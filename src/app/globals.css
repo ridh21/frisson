@@ -1,26 +1,62 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-instrument-serif);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  /* warm off-white paper, matching the reference */
+  --bg: #f3f1ec;
+  --ink: #171717;
+  --muted: #6f6d66;
+  --line: rgba(23, 23, 23, 0.12);
+  --panel: #faf9f6;
+  --accent: #b4552d;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* subtle dot grid for the preview canvas */
+.preview-grid {
+  background-color: var(--bg);
+  background-image: radial-gradient(
+    rgba(23, 23, 23, 0.08) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+  background-position: center;
+}
+
+/* Shiki: let our panel background show through, tune spacing */
+.code-scroll .shiki,
+.code-scroll .shiki span {
+  background: transparent !important;
+}
+.code-scroll .shiki {
+  margin: 0;
+  padding: 1.1rem 1.25rem;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 13px;
+  line-height: 1.65;
+  tab-size: 2;
+}
+
+/* quiet, thin scrollbars inside code */
+.code-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+.code-scroll::-webkit-scrollbar-thumb {
+  background: rgba(23, 23, 23, 0.16);
+  border: 3px solid var(--panel);
+  border-radius: 999px;
+}
+.code-scroll::-webkit-scrollbar-track {
+  background: transparent;
 }

@@ -1,6 +1,8 @@
 {
-  "name": "micro-interactions",
+  "name": "frisson",
   "version": "0.1.0",
+  "description": "An open-source collection of finely detailed micro-interaction components for Next.js, built with Motion.",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -9,9 +11,11 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "motion": "^12.42.2",
     "next": "16.2.10",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "shiki": "^4.3.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",

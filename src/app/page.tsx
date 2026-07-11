@@ -1,65 +1,94 @@
-import Image from "next/image";
+import Link from "next/link";
+import PolaroidGallery from "@/components/PolaroidGallery";
+import { firstSlug, registry } from "@/registry";
+
+const GITHUB_URL = "https://github.com/ridh21/frisson";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+    <main className="mx-auto flex min-h-dvh w-full max-w-[1000px] flex-col px-6 py-10 sm:py-14">
+      <header className="flex items-center justify-between">
+        <span className="font-serif text-xl tracking-tight">Frisson</span>
+        <nav className="flex items-center gap-5 text-sm text-[var(--muted)]">
+          <Link
+            href={`/c/${firstSlug}`}
+            className="transition-colors hover:text-[var(--ink)]"
+          >
+            Components
+          </Link>
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
+            className="transition-colors hover:text-[var(--ink)]"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+            GitHub ↗
           </a>
+        </nav>
+      </header>
+
+      <section className="mt-20 sm:mt-28">
+        <span className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--panel)] px-3 py-1 text-xs text-[var(--muted)]">
+          <span className="size-1.5 rounded-full bg-[var(--accent)]" />
+          v0.1 · open source · MIT
+        </span>
+        <h1 className="mt-5 max-w-[16ch] font-serif text-5xl leading-[1.03] tracking-tight sm:text-[5.5rem]">
+          That little shiver of delight.
+        </h1>
+        <p className="mt-6 max-w-[54ch] text-lg leading-relaxed text-[var(--muted)]">
+          An open-source collection of finely detailed micro-interaction
+          components for Next.js, built with Motion. Preview each one, read the
+          source, copy it into your project.
+        </p>
+
+        <div className="mt-8 flex flex-wrap items-center gap-3">
+          <Link
+            href={`/c/${firstSlug}`}
+            className="rounded-full bg-[var(--ink)] px-5 py-2.5 text-sm font-medium text-[var(--bg)] transition-opacity hover:opacity-90"
+          >
+            Explore components →
+          </Link>
           <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href={GITHUB_URL}
             target="_blank"
             rel="noopener noreferrer"
+            className="rounded-full border border-[var(--line)] px-5 py-2.5 text-sm text-[var(--muted)] transition-colors hover:text-[var(--ink)]"
           >
-            Documentation
+            Star on GitHub
           </a>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* a live taste of the first component */}
+      <section className="mt-20 flex flex-col items-center">
+        <Link
+          href={`/c/${firstSlug}`}
+          className="preview-grid flex w-full items-center justify-center overflow-hidden rounded-2xl border border-[var(--line)] px-6 py-24 transition-colors hover:border-[rgba(23,23,23,0.2)]"
+        >
+          <PolaroidGallery />
+        </Link>
+        <p className="mt-3 text-xs text-[var(--muted)]">
+          {registry[0]?.name} — hover a card, then click to preview.
+        </p>
+      </section>
+
+      <section className="mt-16 flex flex-col items-center gap-2 text-center">
+        <span className="rounded-full bg-[var(--accent)]/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[var(--accent)]">
+          Coming soon
+        </span>
+        <p className="max-w-[46ch] text-sm text-[var(--muted)]">
+          <span className="text-[var(--ink)]">shadcn registry support</span> —
+          install any component with{" "}
+          <code className="font-mono text-[13px] text-[var(--ink)]">
+            npx shadcn add
+          </code>
+          .
+        </p>
+      </section>
+
+      <footer className="mt-auto pt-24 text-xs text-[var(--muted)]">
+        Open source · MIT · built with Next.js + Motion
+      </footer>
+    </main>
   );
 }

@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frisson
 
-## Getting Started
+**That little shiver of delight.**
 
-First, run the development server:
+An open-source collection of finely detailed micro-interaction components for
+Next.js, built with [Motion](https://motion.dev). Browse each one in a live
+showcase, read the source, and copy it straight into your project.
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `/` — landing page with a live taste of the featured component.
+- `/c/[slug]` — the showcase: a sidebar to switch components, a **Preview**
+  canvas, and a **Code** tab (source read straight off disk, with copy).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Components
 
-## Learn More
+| Component | What it does |
+| --- | --- |
+| **Polaroid Gallery** | A fanned row of polaroids that straighten and lift on hover with a per-character caption reveal, plus a click-to-preview lightbox that grows from the card's exact position. |
 
-To learn more about Next.js, take a look at the following resources:
+## Using a component
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Every component is self-contained. From its page:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Install its dependencies (shown under **Use it**, e.g. `npm i motion`).
+2. Copy the file from the **Code** tab into your project.
+3. Import it and swap the placeholder images for your own.
 
-## Deploy on Vercel
+## Adding a component
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The registry is the single source of truth — no build step, no manifest to
+regenerate.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Drop your component in `src/components/`, e.g. `YourThing.tsx`.
+2. Add a metadata entry to [`src/registry/index.ts`](src/registry/index.ts)
+   (slug, name, description, tags, dependencies, source file paths).
+3. Map the slug to the component in
+   [`src/registry/components.tsx`](src/registry/components.tsx).
+
+That's it — the sidebar, routes, preview, and code tab all pick it up
+automatically.
+
+## Tech
+
+- [Next.js](https://nextjs.org) (App Router)
+- [Motion](https://motion.dev)
+- [Tailwind CSS](https://tailwindcss.com) v4
+
+## License
+
+[MIT](LICENSE) © Ridham Patel
