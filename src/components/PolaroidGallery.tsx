@@ -47,6 +47,8 @@ const ROT_MAX = 14; // degrees at the outermost card (unscaled)
 const ARC_Y = 8 * S; // outer cards hang this much lower (parabolic)
 const LIFT = 12 * S; // hovered card rises
 const SX_STEP = 8 * S; // hovered card nudges outward: offset × this
+const SPREAD = 16 * S; // neighbours gently ease apart to make room for the
+//                        hovered card; the push falls off with distance
 const HIT_BLEED = 4 * S; // hover hit-area bleed (sides/top)
 const HIT_BLEED_BOTTOM = 16 * S; // ...and generously below, so lifting never
 //                                  escapes the cursor (no hover flicker)
@@ -62,21 +64,6 @@ const PADB_PCT = (PAD_BOTTOM / PAPER_W) * 100; // chin, % of width
 const cardTransition = { duration: 0.42, ease: [0.22, 1, 0.36, 1] as const };
 // The open/close glide for the preview — same soul, a hair slower.
 const previewEase = [0.22, 1, 0.36, 1] as const;
-
-const cardVariants: Variants = {
-  rest: (c: { rot: number; baseY: number; sx: number }) => ({
-    x: 0,
-    y: c.baseY,
-    rotate: c.rot,
-    scale: 1,
-  }),
-  active: (c: { rot: number; baseY: number; sx: number }) => ({
-    x: c.sx,
-    y: c.baseY - LIFT,
-    rotate: 0,
-    scale: 1.1,
-  }),
-};
 
 const bubbleVariants: Variants = {
   rest: {
@@ -306,6 +293,22 @@ export default function PolaroidGallery() {
           // while a preview is open the origin card is hidden beneath it
           const isPreviewing = preview === i;
 
+          // Resting pose; the hovered card straightens + lifts, and its
+          // neighbours ease apart (gently, decaying with distance) to make room.
+          let cardX = 0;
+          let cardY = baseY;
+          let cardRotate = rot;
+          let cardScale = 1;
+          if (isHovered) {
+            cardX = sx;
+            cardY = baseY - LIFT;
+            cardRotate = 0;
+            cardScale = 1.1;
+          } else if (hovered !== null) {
+            const dist = i - hovered; // <0 to the left, >0 to the right
+            cardX = Math.sign(dist) * (SPREAD / Math.abs(dist));
+          }
+
           return (
             <motion.div
               key={photo.src}
@@ -320,10 +323,8 @@ export default function PolaroidGallery() {
                 WebkitTapHighlightColor: "transparent",
                 opacity: isPreviewing ? 0 : 1,
               }}
-              custom={{ rot, baseY, sx }}
-              variants={cardVariants}
-              initial="rest"
-              animate={isHovered ? "active" : "rest"}
+              initial={false}
+              animate={{ x: cardX, y: cardY, rotate: cardRotate, scale: cardScale }}
               transition={cardTransition}
               onHoverStart={() => {
                 if (preview === null) setHovered(i);

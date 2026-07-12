@@ -75,7 +75,11 @@ export default async function ComponentPage({
         </div>
       </header>
 
-      <ShowcaseTabs files={files} background={meta.background}>
+      <ShowcaseTabs
+        files={files}
+        background={meta.background}
+        previewHref={`/preview/${meta.slug}`}
+      >
         <Component />
       </ShowcaseTabs>
 

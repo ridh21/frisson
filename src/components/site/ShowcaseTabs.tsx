@@ -15,10 +15,12 @@ export function ShowcaseTabs({
   children,
   files,
   background,
+  previewHref,
 }: {
   children: ReactNode;
   files: SourceFile[];
   background?: string;
+  previewHref: string;
 }) {
   const [tab, setTab] = useState<"preview" | "code">("preview");
   const [fileIndex, setFileIndex] = useState(0);
@@ -42,9 +44,20 @@ export function ShowcaseTabs({
 
   return (
     <div className="mt-8">
-      <div className="mb-4 flex items-center gap-1 border-b border-[var(--line)] pb-2">
-        {tabButton("preview", "Preview")}
-        {tabButton("code", "Code")}
+      <div className="mb-4 flex items-center justify-between border-b border-[var(--line)] pb-2">
+        <div className="flex items-center gap-1">
+          {tabButton("preview", "Preview")}
+          {tabButton("code", "Code")}
+        </div>
+        <a
+          href={previewHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm text-[var(--muted)] transition-colors hover:text-[var(--ink)]"
+        >
+          Open in new tab
+          <span aria-hidden>↗</span>
+        </a>
       </div>
 
       {tab === "preview" ? (
