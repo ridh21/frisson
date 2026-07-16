@@ -43,6 +43,17 @@ export const registry: ComponentMeta[] = [
       { name: "polaroid-gallery.tsx", path: "src/components/PolaroidGallery.tsx" },
     ],
   },
+  {
+    slug: "case-studies",
+    name: "Case Studies",
+    description:
+      "A hover-reactive index list: a translucent pill springs behind the active row, morphing to fit it, while a framed preview card slides in from the right, tracks the row you're on, and cross-fades its image as you move between neighbours.",
+    tags: ["hover", "list", "spring", "preview"],
+    dependencies: ["motion"],
+    files: [
+      { name: "case-studies.tsx", path: "src/components/CaseStudies.tsx" },
+    ],
+  },
 ];
 
 export function getMeta(slug: string): ComponentMeta | undefined {
