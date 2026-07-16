@@ -111,7 +111,7 @@ export default function CaseStudies() {
         {/* the spring pill, behind the rows */}
         <motion.span
           aria-hidden
-          className="pointer-events-none absolute left-0 top-0 z-0 rounded-xl border border-zinc-200/70 bg-white/60 shadow-sm backdrop-blur-md"
+          className="pointer-events-none absolute left-0 top-0 z-0 rounded-xl border border-zinc-200/70 bg-white/60 shadow-sm backdrop-blur-md dark:border-white/10 dark:bg-white/10"
           initial={false}
           animate={{
             top: pill.top,
@@ -138,12 +138,16 @@ export default function CaseStudies() {
               <span
                 className={[
                   "text-[15px] font-medium transition-colors duration-200",
-                  active === i ? "text-zinc-900" : "text-zinc-500",
+                  active === i
+                    ? "text-zinc-900 dark:text-zinc-50"
+                    : "text-zinc-500 dark:text-zinc-400",
                 ].join(" ")}
               >
                 {item.title}
               </span>
-              <span className="text-[13px] text-zinc-400">{item.meta}</span>
+              <span className="text-[13px] text-zinc-400 dark:text-zinc-500">
+                {item.meta}
+              </span>
             </button>
           ))}
         </div>
@@ -162,14 +166,14 @@ export default function CaseStudies() {
       <AnimatePresence>
         {active != null && (
           <motion.div
-            className="absolute left-0 top-0 z-20 hidden flex-col rounded-2xl border border-zinc-200 bg-white p-1 shadow-[0_12px_40px_-12px_rgba(23,23,23,0.25)] md:flex"
+            className="absolute left-0 top-0 z-20 hidden flex-col rounded-2xl border border-zinc-200 bg-white p-1 shadow-[0_12px_40px_-12px_rgba(23,23,23,0.25)] dark:border-zinc-800 dark:bg-zinc-900 dark:shadow-[0_12px_40px_-12px_rgba(0,0,0,0.6)] md:flex"
             style={{ width: CARD_W }}
             initial={{ opacity: 0, scale: 0.96, x: card.x, y: card.y }}
             animate={{ opacity: 1, scale: 1, x: card.x, y: card.y }}
             exit={{ opacity: 0, scale: 0.96 }}
             transition={SPRING}
           >
-            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50">
+            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-800">
               <AnimatePresence mode="popLayout">
                 <motion.img
                   key={active}

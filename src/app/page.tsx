@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PolaroidGallery from "@/components/PolaroidGallery";
 import { firstSlug, registry } from "@/registry";
+import { ThemeToggle } from "@/components/site/ThemeToggle";
 
 const GITHUB_URL = "https://github.com/ridh21/frisson";
 
@@ -24,6 +25,7 @@ export default function Home() {
           >
             GitHub ↗
           </a>
+          <ThemeToggle />
         </nav>
       </header>
 

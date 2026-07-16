@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { registry, getMeta } from "@/registry";
 import { componentMap } from "@/registry/components";
+import { ThemeToggle } from "@/components/site/ThemeToggle";
 
 export function generateStaticParams() {
   return registry.map((c) => ({ slug: c.slug }));
@@ -47,6 +48,10 @@ export default async function PreviewPage({
         <span className="text-[var(--line)]">/</span>
         {meta.name}
       </Link>
+
+      <div className="fixed right-5 top-5 z-10">
+        <ThemeToggle className="bg-[var(--panel)]/80 backdrop-blur" />
+      </div>
 
       <main
         className={[

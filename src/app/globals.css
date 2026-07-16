@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Class-based dark mode: `dark:` utilities apply when .dark is on an ancestor
+   (we put it on <html>). */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -14,21 +18,38 @@
   --line: rgba(23, 23, 23, 0.12);
   --panel: #faf9f6;
   --accent: #b4552d;
+  /* derived tokens so hovers, dots and scrollbars can flip with the theme */
+  --hover: rgba(23, 23, 23, 0.06);
+  --dot: rgba(23, 23, 23, 0.08);
+  --scrollbar: rgba(23, 23, 23, 0.16);
+  color-scheme: light;
+}
+
+.dark {
+  /* warm-tinted charcoal, so it reads as the same family as the paper theme */
+  --bg: #17161a;
+  --ink: #ecebe6;
+  --muted: #9a978e;
+  --line: rgba(255, 255, 255, 0.14);
+  --panel: #201f24;
+  --accent: #e0764c;
+  --hover: rgba(255, 255, 255, 0.08);
+  --dot: rgba(255, 255, 255, 0.07);
+  --scrollbar: rgba(255, 255, 255, 0.18);
+  color-scheme: dark;
 }
 
 body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 /* subtle dot grid for the preview canvas */
 .preview-grid {
   background-color: var(--bg);
-  background-image: radial-gradient(
-    rgba(23, 23, 23, 0.08) 1px,
-    transparent 1px
-  );
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
   background-size: 22px 22px;
   background-position: center;
 }
@@ -53,10 +74,16 @@ body {
   height: 10px;
 }
 .code-scroll::-webkit-scrollbar-thumb {
-  background: rgba(23, 23, 23, 0.16);
+  background: var(--scrollbar);
   border: 3px solid var(--panel);
   border-radius: 999px;
 }
 .code-scroll::-webkit-scrollbar-track {
   background: transparent;
+}
+
+/* Shiki dual-theme: spans carry a --shiki-dark colour; switch to it in dark. */
+.dark .code-scroll .shiki,
+.dark .code-scroll .shiki span {
+  color: var(--shiki-dark) !important;
 }

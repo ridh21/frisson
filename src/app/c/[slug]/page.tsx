@@ -67,7 +67,7 @@ export default async function ComponentPage({
           {meta.dependencies.map((d) => (
             <span
               key={d}
-              className="rounded-full bg-[rgba(23,23,23,0.06)] px-2.5 py-0.5 font-mono text-xs text-[var(--ink)]"
+              className="rounded-full bg-[var(--hover)] px-2.5 py-0.5 font-mono text-xs text-[var(--ink)]"
             >
               {d}
             </span>
@@ -96,7 +96,7 @@ export default async function ComponentPage({
           <li>
             <span className="mr-1 font-mono text-xs text-[var(--muted)]">02</span>{" "}
             Copy{" "}
-            <code className="rounded bg-[rgba(23,23,23,0.06)] px-1.5 py-0.5 font-mono text-[13px]">
+            <code className="rounded bg-[var(--hover)] px-1.5 py-0.5 font-mono text-[13px]">
               {meta.files[0].name}
             </code>{" "}
             from the <strong>Code</strong> tab into your project.
@@ -117,7 +117,7 @@ export default async function ComponentPage({
               shadcn registry support is coming soon.
             </span>{" "}
             You&apos;ll be able to install any Frisson component in one line —{" "}
-            <code className="rounded bg-[rgba(23,23,23,0.06)] px-1.5 py-0.5 font-mono text-[12px] text-[var(--ink)]">
+            <code className="rounded bg-[var(--hover)] px-1.5 py-0.5 font-mono text-[12px] text-[var(--ink)]">
               npx shadcn@latest add {meta.slug}
             </code>
             .

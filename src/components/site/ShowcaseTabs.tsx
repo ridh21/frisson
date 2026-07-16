@@ -81,7 +81,7 @@ export function ShowcaseTabs({
                   className={[
                     "rounded-md px-2.5 py-1 font-mono text-xs transition-colors",
                     i === fileIndex
-                      ? "bg-[rgba(23,23,23,0.06)] text-[var(--ink)]"
+                      ? "bg-[var(--hover)] text-[var(--ink)]"
                       : "text-[var(--muted)] hover:text-[var(--ink)]",
                   ].join(" ")}
                 >
