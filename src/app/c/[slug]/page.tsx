@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { registry, getMeta } from "@/registry";
+import { registry, getMeta, REGISTRY_NAMESPACE } from "@/registry";
 import { componentMap } from "@/registry/components";
 import { readSource } from "@/lib/read-source";
 import { highlight } from "@/lib/highlight";
 import { ShowcaseTabs } from "@/components/site/ShowcaseTabs";
+import { InstallCommand } from "@/components/site/InstallCommand";
 
 export function generateStaticParams() {
   return registry.map((c) => ({ slug: c.slug }));
@@ -84,8 +85,69 @@ export default async function ComponentPage({
       </ShowcaseTabs>
 
       <section className="mt-14">
-        <h2 className="font-serif text-2xl tracking-tight">Use it</h2>
-        <ol className="mt-4 space-y-4 text-[15px] leading-relaxed text-[var(--ink)]">
+        <h2 className="font-serif text-2xl tracking-tight">Install</h2>
+
+        {/* shadcn CLI — the one-line path */}
+        <p className="mt-4 text-[15px] leading-relaxed text-[var(--ink)]">
+          Add it to your project with the{" "}
+          <a
+            href="https://ui.shadcn.com/docs/cli"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline decoration-[var(--line)] underline-offset-2 hover:decoration-[var(--ink)]"
+          >
+            shadcn CLI
+          </a>
+          . Its files, the{" "}
+          <code className="rounded bg-[var(--hover)] px-1.5 py-0.5 font-mono text-[13px]">
+            blur.ts
+          </code>{" "}
+          helper
+          {meta.dependencies.length ? (
+            <>
+              , and{" "}
+              {meta.dependencies.map((d, i) => (
+                <span key={d}>
+                  {i > 0 && ", "}
+                  <code className="rounded bg-[var(--hover)] px-1.5 py-0.5 font-mono text-[13px]">
+                    {d}
+                  </code>
+                </span>
+              ))}
+            </>
+          ) : null}{" "}
+          are pulled in automatically:
+        </p>
+        <div className="mt-3">
+          <InstallCommand
+            command={`npx shadcn@latest add ${REGISTRY_NAMESPACE}/${meta.slug}`}
+          />
+        </div>
+        <p className="mt-2.5 text-[13px] leading-relaxed text-[var(--muted)]">
+          Requires a shadcn-initialized project — run{" "}
+          <code className="rounded bg-[var(--hover)] px-1.5 py-0.5 font-mono text-[12px]">
+            npx shadcn@latest init
+          </code>{" "}
+          first if you haven&apos;t. Works with{" "}
+          <code className="rounded bg-[var(--hover)] px-1.5 py-0.5 font-mono text-[12px]">
+            pnpm
+          </code>
+          ,{" "}
+          <code className="rounded bg-[var(--hover)] px-1.5 py-0.5 font-mono text-[12px]">
+            yarn
+          </code>
+          , and{" "}
+          <code className="rounded bg-[var(--hover)] px-1.5 py-0.5 font-mono text-[12px]">
+            bun
+          </code>{" "}
+          too.
+        </p>
+
+        {/* Manual fallback */}
+        <h3 className="mt-8 text-sm font-medium text-[var(--ink)]">
+          Or copy it by hand
+        </h3>
+        <ol className="mt-3 space-y-4 text-[15px] leading-relaxed text-[var(--ink)]">
           <li>
             <span className="mr-1 font-mono text-xs text-[var(--muted)]">01</span>{" "}
             Install the dependencies:
@@ -96,9 +158,14 @@ export default async function ComponentPage({
           <li>
             <span className="mr-1 font-mono text-xs text-[var(--muted)]">02</span>{" "}
             Copy{" "}
-            <code className="rounded bg-[var(--hover)] px-1.5 py-0.5 font-mono text-[13px]">
-              {meta.files[0].name}
-            </code>{" "}
+            {meta.files.map((f, i) => (
+              <span key={f.name}>
+                {i > 0 && " and "}
+                <code className="rounded bg-[var(--hover)] px-1.5 py-0.5 font-mono text-[13px]">
+                  {f.name}
+                </code>
+              </span>
+            ))}{" "}
             from the <strong>Code</strong> tab into your project.
           </li>
           <li>
@@ -106,23 +173,6 @@ export default async function ComponentPage({
             Import it and drop it in — swap the placeholder images for your own.
           </li>
         </ol>
-
-        {/* shadcn registry teaser */}
-        <div className="mt-6 flex items-start gap-3 rounded-xl border border-dashed border-[var(--line)] bg-[var(--panel)] px-4 py-3.5">
-          <span className="mt-0.5 rounded-full bg-[var(--accent)]/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[var(--accent)]">
-            Soon
-          </span>
-          <p className="text-sm leading-relaxed text-[var(--muted)]">
-            <span className="font-medium text-[var(--ink)]">
-              shadcn registry support is coming soon.
-            </span>{" "}
-            You&apos;ll be able to install any Frisson component in one line —{" "}
-            <code className="rounded bg-[var(--hover)] px-1.5 py-0.5 font-mono text-[12px] text-[var(--ink)]">
-              npx shadcn@latest add {meta.slug}
-            </code>
-            .
-          </p>
-        </div>
       </section>
     </article>
   );

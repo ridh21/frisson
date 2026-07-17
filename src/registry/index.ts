@@ -70,6 +70,13 @@ export const registry: ComponentMeta[] = [
   },
 ];
 
+/**
+ * The `owner/repo` namespace under which Frisson is published as a shadcn
+ * registry (see `registry.json` at the repo root). Consumers install any
+ * component with `npx shadcn@latest add ${REGISTRY_NAMESPACE}/<slug>`.
+ */
+export const REGISTRY_NAMESPACE = "ridh21/frisson";
+
 export function getMeta(slug: string): ComponentMeta | undefined {
   return registry.find((c) => c.slug === slug);
 }

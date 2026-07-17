@@ -1,0 +1,58 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "frisson",
+  "homepage": "https://github.com/ridh21/frisson",
+  "items": [
+    {
+      "name": "polaroid-gallery",
+      "type": "registry:component",
+      "title": "Polaroid Gallery",
+      "description": "A fanned row of polaroids that straighten and lift on hover with a per-character caption reveal, plus a click-to-preview lightbox that grows from the card's exact position and glides back on close.",
+      "dependencies": ["motion"],
+      "files": [
+        {
+          "path": "src/components/PolaroidGallery.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/lib/blur.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "case-studies",
+      "type": "registry:component",
+      "title": "Case Studies",
+      "description": "A hover-reactive index list: a translucent pill springs behind the active row, morphing to fit it, while a framed preview card slides in from the right, tracks the row you're on, and cross-fades its image as you move between neighbours.",
+      "dependencies": ["motion"],
+      "files": [
+        {
+          "path": "src/components/CaseStudies.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/lib/blur.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "avatar-stack",
+      "type": "registry:component",
+      "title": "Avatar Stack",
+      "description": "A profile avatar that's secretly a deck of photos: the primary sits on a stack with name and title beneath. Hovering peeks the hidden photos out; clicking deals the deck open — the primary photo and name spring up to the top while the rest flick into a horizontal row below. In the row, hovering a photo pops it up dock-style while its neighbours lift. Click again to restack.",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "src/components/AvatarStack.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "src/lib/blur.ts",
+          "type": "registry:lib"
+        }
+      ]
+    }
+  ]
+}
