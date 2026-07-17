@@ -1,6 +1,6 @@
 import Link from "next/link";
 import PolaroidGallery from "@/components/PolaroidGallery";
-import { firstSlug, registry } from "@/registry";
+import { firstSlug, registry, REGISTRY_NAMESPACE } from "@/registry";
 import { ThemeToggle } from "@/components/site/ThemeToggle";
 
 const GITHUB_URL = "https://github.com/ridh21/frisson";
@@ -74,18 +74,14 @@ export default function Home() {
         </p>
       </section>
 
-      <section className="mt-16 flex flex-col items-center gap-2 text-center">
-        <span className="rounded-full bg-[var(--accent)]/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[var(--accent)]">
-          Coming soon
-        </span>
+      <section className="mt-16 flex flex-col items-center gap-3 text-center">
         <p className="max-w-[46ch] text-sm text-[var(--muted)]">
-          <span className="text-[var(--ink)]">shadcn registry support</span> —
-          install any component with{" "}
-          <code className="font-mono text-[13px] text-[var(--ink)]">
-            npx shadcn add
-          </code>
-          .
+          <span className="text-[var(--ink)]">Install any component</span> with
+          the shadcn CLI — one line, dependencies and all.
         </p>
+        <code className="rounded-lg border border-[var(--line)] bg-[var(--panel)] px-3.5 py-1.5 font-mono text-[13px] text-[var(--ink)]">
+          npx shadcn@latest add {REGISTRY_NAMESPACE}/{firstSlug}
+        </code>
       </section>
 
       <footer className="mt-auto pt-24 text-xs text-[var(--muted)]">

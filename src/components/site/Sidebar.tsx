@@ -52,10 +52,15 @@ export function Sidebar() {
       </nav>
 
       <div className="mt-auto hidden flex-col gap-2 text-xs text-[var(--muted)] sm:flex">
-        <span className="inline-flex w-fit items-center gap-1.5 rounded-full border border-dashed border-[var(--line)] px-2 py-0.5">
+        <a
+          href="https://ui.shadcn.com/docs/registry/github"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex w-fit items-center gap-1.5 rounded-full border border-[var(--line)] px-2 py-0.5 transition-colors hover:text-[var(--ink)]"
+        >
           <span className="size-1.5 rounded-full bg-[var(--accent)]" />
-          shadcn registry · soon
-        </span>
+          shadcn registry
+        </a>
         <a
           href={GITHUB_URL}
           target="_blank"
