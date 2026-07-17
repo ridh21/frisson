@@ -6,8 +6,10 @@
 import type { ComponentType } from "react";
 import PolaroidGallery from "@/components/PolaroidGallery";
 import CaseStudies from "@/components/CaseStudies";
+import AvatarStack from "@/components/AvatarStack";
 
 export const componentMap: Record<string, ComponentType> = {
   "polaroid-gallery": PolaroidGallery,
   "case-studies": CaseStudies,
+  "avatar-stack": AvatarStack,
 };

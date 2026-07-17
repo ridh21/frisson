@@ -54,6 +54,15 @@ export const registry: ComponentMeta[] = [
       { name: "case-studies.tsx", path: "src/components/CaseStudies.tsx" },
     ],
   },
+  {
+    slug: "avatar-stack",
+    name: "Avatar Stack",
+    description:
+      "A profile avatar that's secretly a deck of photos: the primary sits on a stack with name and title beneath. Hovering peeks the hidden photos out; clicking deals the deck open — the primary photo and name spring up to the top while the rest flick into a horizontal row below. In the row, hovering a photo pops it up dock-style while its neighbours lift. Click again to restack.",
+    tags: ["hover", "click", "spring", "profile", "dock"],
+    dependencies: [],
+    files: [{ name: "avatar-stack.tsx", path: "src/components/AvatarStack.tsx" }],
+  },
 ];
 
 export function getMeta(slug: string): ComponentMeta | undefined {
