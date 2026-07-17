@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, type Variants } from "motion/react";
+import { BLUR_DATA_URL } from "@/lib/blur";
 
 /**
  * A fanned row of Polaroid photos — a faithful rebuild of the "Off screen"
@@ -237,7 +238,8 @@ function PhotoPreview({
               className="object-cover"
               draggable={false}
               priority
-              unoptimized
+              placeholder="blur"
+              blurDataURL={BLUR_DATA_URL}
             />
           </div>
 
@@ -423,7 +425,8 @@ export default function PolaroidGallery() {
                     sizes={`${Math.round(IMG_W)}px`}
                     className="object-cover"
                     draggable={false}
-                    unoptimized
+                    placeholder="blur"
+                    blurDataURL={BLUR_DATA_URL}
                   />
                 </div>
               </motion.div>

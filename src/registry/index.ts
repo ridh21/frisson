@@ -41,6 +41,7 @@ export const registry: ComponentMeta[] = [
     dependencies: ["motion"],
     files: [
       { name: "polaroid-gallery.tsx", path: "src/components/PolaroidGallery.tsx" },
+      { name: "blur.ts", path: "src/lib/blur.ts" },
     ],
   },
   {
@@ -52,6 +53,7 @@ export const registry: ComponentMeta[] = [
     dependencies: ["motion"],
     files: [
       { name: "case-studies.tsx", path: "src/components/CaseStudies.tsx" },
+      { name: "blur.ts", path: "src/lib/blur.ts" },
     ],
   },
   {
@@ -61,7 +63,10 @@ export const registry: ComponentMeta[] = [
       "A profile avatar that's secretly a deck of photos: the primary sits on a stack with name and title beneath. Hovering peeks the hidden photos out; clicking deals the deck open — the primary photo and name spring up to the top while the rest flick into a horizontal row below. In the row, hovering a photo pops it up dock-style while its neighbours lift. Click again to restack.",
     tags: ["hover", "click", "spring", "profile", "dock"],
     dependencies: [],
-    files: [{ name: "avatar-stack.tsx", path: "src/components/AvatarStack.tsx" }],
+    files: [
+      { name: "avatar-stack.tsx", path: "src/components/AvatarStack.tsx" },
+      { name: "blur.ts", path: "src/lib/blur.ts" },
+    ],
   },
 ];
 

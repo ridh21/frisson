@@ -1,7 +1,9 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
+import { BLUR_DATA_URL } from "@/lib/blur";
 
 /**
  * Case Studies — a hover-reactive index list, rebuilt from the case-studies
@@ -175,16 +177,24 @@ export default function CaseStudies() {
           >
             <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-800">
               <AnimatePresence mode="popLayout">
-                <motion.img
+                <motion.div
                   key={active}
-                  src={ITEMS[active].image}
-                  alt={ITEMS[active].title}
-                  className="absolute inset-0 h-full w-full object-cover"
+                  className="absolute inset-0"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.25 }}
-                />
+                >
+                  <Image
+                    src={ITEMS[active].image}
+                    alt={ITEMS[active].title}
+                    fill
+                    sizes={`${CARD_W}px`}
+                    className="object-cover"
+                    placeholder="blur"
+                    blurDataURL={BLUR_DATA_URL}
+                  />
+                </motion.div>
               </AnimatePresence>
             </div>
           </motion.div>

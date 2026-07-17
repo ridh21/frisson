@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
+import { BLUR_DATA_URL } from "@/lib/blur";
 
 /**
  * Avatar Stack — a profile avatar that's secretly a deck of photos.
@@ -120,12 +122,15 @@ export default function AvatarStack() {
             onMouseEnter={() => open && photo.rowIndex !== null && setHoverRow(photo.rowIndex)}
             onMouseLeave={() => open && photo.rowIndex !== null && setHoverRow(null)}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={photo.src}
               alt={photo.alt}
-              className="h-full w-full object-cover"
+              fill
+              sizes={`${PHOTO}px`}
+              className="object-cover"
               draggable={false}
+              placeholder="blur"
+              blurDataURL={BLUR_DATA_URL}
             />
           </div>
         );
