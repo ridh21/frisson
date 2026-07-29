@@ -60,7 +60,7 @@ export const registry: ComponentMeta[] = [
     slug: "avatar-stack",
     name: "Avatar Stack",
     description:
-      "A profile avatar that's secretly a deck of photos: the primary sits on a stack with name and title beneath. Hovering peeks the hidden photos out; clicking deals the deck open — the primary photo and name spring up to the top while the rest flick into a horizontal row below. In the row, hovering a photo pops it up dock-style while its neighbours lift. Click again to restack.",
+      "A profile avatar that's secretly a deck of photos: hovering the primary image fans out the hidden cards, while clicking deals them into a precise horizontal row. Hovered row cards enlarge as their neighbours move aside, and clicking again returns the deck to its measured stacked angles.",
     tags: ["hover", "click", "spring", "profile", "dock"],
     dependencies: [],
     files: [
